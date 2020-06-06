@@ -17,3 +17,21 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
+
+import Vue from 'vue/dist/vue.esm'
+import App from '../app.vue'
+
+
+document.addEventListener("turbolinks:load", function() {
+	var element = document.querySelector("#boards")
+	if (element != undefined) {
+		const app = new Vue({
+			el: element,
+			data: {
+				lists: JSON.parse(element.dataset.lists)
+			},
+		    template: "<App :orignal_lists= 'lists' />",
+			components: { App }
+		})
+	}
+});
